@@ -4,7 +4,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import type { GiphySearchResponse, Gif } from '../interfaces/gifs.interfaces';
 
-const GIPHY_API_KEY = "";
+const GIPHY_API_KEY = "iBdBFRMIhTQw4HcDwMSi0jHJ1MfXkDTl";
 
 @Injectable({ providedIn: 'root'})
 export class GifsService {
@@ -13,7 +13,9 @@ export class GifsService {
   private _tagsHistory: string[] = [];
   private serviceUrl: string = "https://api.giphy.com/v1/gifs";
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.loadLocalStorage();
+  }
 
   public get tagsHistory(): string[] {
     return [...this._tagsHistory];
@@ -31,11 +33,27 @@ export class GifsService {
 
     // Put the new search and the top of the array
     this._tagsHistory.unshift(tag);
-    /// Keep the last 10 searches
-    this._tagsHistory.splice(0, 10);
+    // Keep the last 10 searches
+    this._tagsHistory = this._tagsHistory.slice(0, 10);
+    this.saveLocalStorage();
   }
 
-  async searchTag(tag: string) {
+  private loadLocalStorage() {
+    const tagsHistory = localStorage.getItem("tags_history");
+
+    if (!tagsHistory) return;
+
+    this._tagsHistory = JSON.parse(tagsHistory);
+
+    if (this._tagsHistory.length <= 0) return;
+    this.searchTag(this._tagsHistory[0]);
+  }
+
+  private saveLocalStorage() {
+    localStorage.setItem("tags_history", JSON.stringify(this._tagsHistory));
+  }
+
+  public searchTag(tag: string) {
     if (tag.length === 0) return;
 
     this.organizeTagsHistory(tag);
