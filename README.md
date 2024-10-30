@@ -1,27 +1,24 @@
 # GifsApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+Aunque este proyecto fue creado la versión del [Angular CLI](https://github.com/angular/angular-cli) 18.2.10, utiliza características clásicas de Angular con fines de aprendezaje.
 
-## Development server
+## Servidor de Desarrollo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Este proyecto usa **Deno 2.0**, una vez instalado, ejectuar todos los comando con **deno run**, para iniciar el server de desarrollo usar ```deno run start```
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+#### Importante
+Generar una nueva apiKey de Giphy, y agregarla en el **gifs service**
 
 ## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Ejectuar `deno run build` para hacer *build* del proyecto. Los archivos estáticos se generan en la carpeta `dist/`.
 
-## Running unit tests
+## Temas aprendidos
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- Uso del @Input
+- Componetización básica con Angular
+- Manejo de ***Estados globales***, haciendo uso de ***Services***
+- Manejo de eventos y directivas de Angular
+- Manejo de ***Modules***, importando y exportando componentes
+- Realizar peticiones HTTP haciendo del HTTPModule
+- Uso de **getters** para proteger las propiedades de los servicios, tanto en los **Servicios** como en los **Componentes**
